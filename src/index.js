@@ -9,6 +9,8 @@ const today = new Date();
 const todayString = `${today.getDate()}-${today.getMonth() +
   1}-${today.getFullYear()}`;
 
+const HOUR_THRESHOLD_MIN = 13;
+const HOUR_THRESHOLD_MAX = 14;
 function parseReservationTimesFromHtml(html) {
   var parser = new DOMParser();
   var doc = parser.parseFromString(html, "text/html");
@@ -19,6 +21,10 @@ function parseReservationTimesFromHtml(html) {
     })
     .map(node => {
       return node.innerHTML;
+    })
+    .filter(reservation => {
+      const hour = Number(reservation.slice(0, 2));
+      return hour >= HOUR_THRESHOLD_MIN && hour <= HOUR_THRESHOLD_MAX;
     });
 }
 
