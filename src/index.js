@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import StatusGif from "./StatusGif/StatusGif";
 
 import "./styles.css";
+import "./styles/fadeIn.css";
 
 const today = new Date();
 const todayString = `${today.getDate()}-${today.getMonth() +
@@ -50,15 +52,36 @@ function fetchGif(tag) {
     .then(response => response.json())
     .then(jsonResponse => {
       const gifUrl = jsonResponse.data.images.downsized_large.url;
+      const gifUrlPaceholder =
+        jsonResponse.data.images.fixed_width_small_still.url;
       console.log(gifUrl);
-      return gifUrl;
+      return { gifUrl, gifUrlPaceholder };
     });
+}
+
+const RESERVATIONS_SECOND_ROW_THRESHOLD = 9;
+const RESERVATIONS_THIRD_ROW_THRESHOLD = 13;
+function imageSizeClassNameToFit(reservationTimesCount) {
+  if (reservationTimesCount === 0) {
+    return;
+  }
+
+  if (reservationTimesCount < RESERVATIONS_SECOND_ROW_THRESHOLD) {
+    return "medium";
+  }
+
+  if (reservationTimesCount < RESERVATIONS_THIRD_ROW_THRESHOLD) {
+    return "small";
+  }
+
+  return;
 }
 
 function App() {
   const [reservationTimes, setReservationTimes] = useState(null);
   const [hasReservations, setHasReservations] = useState(null);
-  const [imageSrc, setImageSrc] = useState(null);
+  const [statusGifSrc, setStatusGifSrc] = useState(null);
+  const [statusGifPlaceholderSrc, setStatusGifPlaceholderSrc] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -68,24 +91,27 @@ function App() {
     });
   }, []);
 
-  useEffect(
-    () => {
-      if (hasReservations == null) {
-        return;
-      }
+  useEffect(() => {
+    if (hasReservations == null) {
+      return;
+    }
 
-      const imageTag = hasReservations ? "eat" : "sad";
+    const imageTag = hasReservations ? "eat" : "sad";
 
-      fetchGif(imageTag)
-        .then(imageSrc => {
-          setImageSrc(imageSrc);
-        })
-        .catch(err => {
-          setImageSrc(hasReservations ? "img/eat.gif" : "img/sad.gif");
-        });
-    },
-    [hasReservations]
-  );
+    fetchGif(imageTag)
+      .then(
+        ({
+          gifUrl: statusGifSrc,
+          gifUrlPaceholder: statusGifPlaceholderSrc
+        }) => {
+          setStatusGifSrc(statusGifSrc);
+          setStatusGifPlaceholderSrc(statusGifPlaceholderSrc);
+        }
+      )
+      .catch(err => {
+        setStatusGifSrc(hasReservations ? "img/eat.gif" : "img/sad.gif");
+      });
+  }, [hasReservations]);
 
   if (error) {
     return <h1>ERROR</h1>;
@@ -96,17 +122,27 @@ function App() {
       <h1>goiko checker 🍔</h1>
       {Boolean(hasReservations != null) && (
         <section>
-          <img src={imageSrc} className="status-image" />
+          <StatusGif
+            src={statusGifSrc}
+            placeholderSrc={statusGifPlaceholderSrc}
+            size={imageSizeClassNameToFit(reservationTimes.length)}
+          />
         </section>
       )}
-      <section className="reservation-time-list">
-        {Boolean(reservationTimes) &&
-          reservationTimes.map(reservationTime => (
-            <article className="reservation-time-item" key={reservationTime}>
+      {Boolean(hasReservations) && (
+        <section className="reservation-time__list fade-in">
+          {reservationTimes.map(reservationTime => (
+            <article className="reservation-time__item" key={reservationTime}>
               {reservationTime}
             </article>
           ))}
-      </section>
+        </section>
+      )}
+      {Boolean(hasReservations === false) && (
+        <section className="no-reservations fade-in">
+          Hoy te toca <span>SaladMarket 🥗</span>
+        </section>
+      )}
     </div>
   );
 }

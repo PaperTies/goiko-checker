@@ -1,0 +1,38 @@
+.status-image__wrapper {
+  position: relative;
+  width: 90vw;  
+  margin: 0 auto;
+}
+
+.status-image{
+  position: absolute;
+  top: 0;
+  left: 0; 
+}
+
+.status-image, .status-image__placeholder {
+  width: 100%;  
+  height: 75vh;
+  border: none;
+  object-fit: cover; 
+  margin-bottom: 1rem;
+  border-radius: 0.5rem; 
+}
+
+.status-image__placeholder {
+  filter: blur(10px);
+}
+.status-image__placeholder.hidden{
+  visibility: hidden;
+}
+
+.status-image__size-small {
+  height: 50vh;
+}
+
+.status-image__size-medium {
+  height: 63vh;
+}
+
+
+
