@@ -1,13 +1,13 @@
 {
-  "main.css": "/static/css/main.ce3ec899.chunk.css",
-  "main.js": "/static/js/main.119cde9c.chunk.js",
-  "main.js.map": "/static/js/main.119cde9c.chunk.js.map",
-  "static/js/1.fc63ea5c.chunk.js": "/static/js/1.fc63ea5c.chunk.js",
-  "static/js/1.fc63ea5c.chunk.js.map": "/static/js/1.fc63ea5c.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.229c360f.js",
-  "runtime~main.js.map": "/static/js/runtime~main.229c360f.js.map",
-  "static/css/main.ce3ec899.chunk.css.map": "/static/css/main.ce3ec899.chunk.css.map",
-  "index.html": "/index.html",
-  "precache-manifest.3e6fa5303256f9ed852ecb30a9cccf86.js": "/precache-manifest.3e6fa5303256f9ed852ecb30a9cccf86.js",
-  "service-worker.js": "/service-worker.js"
+  "main.css": "/goiko-checker/static/css/main.ce3ec899.chunk.css",
+  "main.js": "/goiko-checker/static/js/main.119cde9c.chunk.js",
+  "main.js.map": "/goiko-checker/static/js/main.119cde9c.chunk.js.map",
+  "static/js/1.fc63ea5c.chunk.js": "/goiko-checker/static/js/1.fc63ea5c.chunk.js",
+  "static/js/1.fc63ea5c.chunk.js.map": "/goiko-checker/static/js/1.fc63ea5c.chunk.js.map",
+  "runtime~main.js": "/goiko-checker/static/js/runtime~main.9db0f4c2.js",
+  "runtime~main.js.map": "/goiko-checker/static/js/runtime~main.9db0f4c2.js.map",
+  "static/css/main.ce3ec899.chunk.css.map": "/goiko-checker/static/css/main.ce3ec899.chunk.css.map",
+  "index.html": "/goiko-checker/index.html",
+  "precache-manifest.b41787ee88199fd27771521253121f86.js": "/goiko-checker/precache-manifest.b41787ee88199fd27771521253121f86.js",
+  "service-worker.js": "/goiko-checker/service-worker.js"
 }
