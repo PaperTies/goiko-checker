@@ -53,7 +53,7 @@ async function fetchAndSetReservationHtml() {
 
 function fetchGif(tag) {
   return fetch(
-    `https://api.giphy.com/v1/gifs/random?api_key=RZAnLTeX9PwNoAMEy9nIl79GfxD4FhJi&tag=${tag}`
+    `https://api.giphy.com/v1/gifs/random?api_key=RZAnLTeX9PwNoAMEy9nIl79GfxD4FhJi&tag=${tag}&rating=pg`
   )
     .then(response => response.json())
     .then(jsonResponse => {
