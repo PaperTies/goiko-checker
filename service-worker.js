@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.6.3/workbox-sw.js");
 
 importScripts(
-  "/goiko-checker/precache-manifest.b41787ee88199fd27771521253121f86.js"
+  "/goiko-checker/precache-manifest.018215e250ba92c1373d9b37abb007f5.js"
 );
 
 workbox.clientsClaim();
